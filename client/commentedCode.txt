@@ -1,0 +1,32 @@
+
+
+    // function uploadPhoto(ev) {
+    //     const files = ev.target.files;
+    //     const data = new FormData();
+    //     for(let i = 0; i < files.length; i++) {
+    //         data.append('photos', files[i]);
+    //     }
+    //     axios.post('/upload', data, {
+    //         headers: {'Content-Type': 'multipart/form-data'}
+    //     }).then(response => {
+    //         const {data:filename} = response;
+    //         setAddedPhotos(prev => {
+    //             return [...prev, filename];
+    //         });
+    //     })
+    // }
+
+    // function uploadPhoto(ev) {
+    //     const files = ev.target.files;
+    //     const data = new FormData();
+    //     for (let i = 0; i < files.length; i++) {
+    //         data.append('photos', files[i]);
+    //     }
+    //     axios.post('/upload', data, {
+    //         headers: { 'Content-Type': 'multipart/form-data' }
+    //     }).then(response => {
+    //         const { data: files } = response;
+    //         const filenames = files.map(file => file.filename);
+    //         setAddedPhotos(prev => [...prev, ...filenames]);
+    //     });
+    // }
