@@ -18,6 +18,7 @@ export default function PlacesFormPage() {
     const [checkOut, setCheckOut] = useState('');
     const [maxGuests, setMaxGuests] = useState(1);
     const [redirect, setRedirect] = useState(false);
+    const [price, setPrice] = useState(1000);
 
     useEffect(() => {
         if (!id) {
@@ -34,6 +35,7 @@ export default function PlacesFormPage() {
             setCheckIn(data.checkIn);
             setCheckOut(data.checkOut);
             setMaxGuests(data.maxGuests);
+            setPrice(data.price);
         })
     }, [id]);
 
@@ -62,14 +64,14 @@ export default function PlacesFormPage() {
         ev.preventDefault();
         const placeData = {
             title, address, addedPhotos,
-                description, perks, extraInfo,
-                checkIn, checkOut, maxGuests
+            description, perks, extraInfo,
+            checkIn, checkOut, maxGuests, price
         }
         if (id) {
             // Update
             await axios.put('/places/', {
                 id, ...placeData
-                
+
             });
             setRedirect(true);
 
@@ -105,7 +107,7 @@ export default function PlacesFormPage() {
 
 
                 {preInput('Description', 'Description of the place')}
-                <textarea value={description}
+                <textarea className="w-full" value={description}
                     onChange={ev => setDescription(ev.target.value)} />
 
                 {preInput('Perks', 'Select all the perks of your place')}
@@ -115,12 +117,12 @@ export default function PlacesFormPage() {
                 </div>
 
                 {preInput('Extra info', 'House rules, etc')}
-                <textarea value={extraInfo}
+                <textarea className="w-full" value={extraInfo}
                     onChange={ev => setExtraInfo(ev.target.value)} />
 
                 {preInput('Check in&out times', 'Add check in and out times, remember to have some time window for cleaning the room between guests')}
 
-                <div className="grid gap-2 sm:grid-cols-3">
+                <div className="grid gap-2 grid-cols-2 md:grid-cols-4">
                     <div>
                         <h3 className="mt-2 -mb-1">Check in time</h3>
                         <input type="text" value={checkIn}
@@ -137,6 +139,11 @@ export default function PlacesFormPage() {
                         <h3 className="mt-2 -mb-1">Max number of guests</h3>
                         <input type="text" value={maxGuests}
                             onChange={ev => setMaxGuests(ev.target.value)} />
+                    </div>
+                    <div>
+                        <h3 className="mt-2 -mb-1">Price per night</h3>
+                        <input type="text" value={price}
+                            onChange={ev => setPrice(ev.target.value)} />
                     </div>
                 </div>
                 <div>
